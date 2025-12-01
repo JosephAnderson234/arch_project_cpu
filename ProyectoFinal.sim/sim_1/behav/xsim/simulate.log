@@ -7,6 +7,6 @@ Time resolution is 1 ps
 [imem] Instruction memory initialized:
   RAM[0x00] = 0x00000293
   RAM[0x01] = 0x3f800337
-  RAM[0x02] = 0x400003b7
-  RAM[0x03] = 0x40400437
+  RAM[0x02] = 0x0062a023
+  RAM[0x03] = 0x0002a503
 $finish called at time : 1 us : File "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sim_1/imports/new/testbench.v" Line 32
