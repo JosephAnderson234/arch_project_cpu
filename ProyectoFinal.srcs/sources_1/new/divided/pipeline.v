@@ -15,8 +15,8 @@ module pipeline(input  clk, reset,
     wire [2:0] ALUControlE;
     wire PCSrcE;
 
-    wire FPMiniRegWriteE, FPMiniRegWriteM, FPMiniRegWriteW;
-    wire  WDMuxE, WDMuxM;
+    wire  FPMiniRegWriteW;
+    wire   WDMuxM;
 
     // NUEVAS señales FP
     wire FPRegWriteW, FPRegWriteM;
@@ -57,9 +57,8 @@ module pipeline(input  clk, reset,
 
 
 
-                   .FPMiniRegWriteE(FPMiniRegWriteE),
-                   .FPMiniRegWriteM(FPMiniRegWriteM), .FPMiniRegWriteW(FPMiniRegWriteW),
-                    .WDMuxE(WDMuxE), .WDMuxM(WDMuxM)
+                    .FPMiniRegWriteW(FPMiniRegWriteW),
+                    .WDMuxM(WDMuxM)
                );
 
     // 2. INSTANCIA DEL DATAPATH

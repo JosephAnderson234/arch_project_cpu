@@ -40,12 +40,14 @@ module maindec(
 
             7'b1010011: begin  // INSTRUCCIONES FP
                 controls = 15'b0_000_00_0_11_0_11_0_0_0; 
+                FPOp = 1'b1;        // activar ruta FPU
+                FPRegWrite = 1'b1;  // escribir en banco de registros FP
             end
-            7'b0111111: begin  // INSTRUCCIONES MINI FP para cargar constantes en el mini Register FP
-                controls = 15'b0_000_01_0_01_0_00_0_1_0;
+            7'b0001011: begin  // CUSTOM-0: MINI FP LOAD (LWMM) - I-type
+                controls = 15'b0_000_01_0_01_0_00_0_1_0; // FPMiniRegWrite=1; RegWrite=0
             end
-            7'b0111110: begin  // INSTRUCCIONES MINI FP para guardar la multiplicación de matrices guardados en el mini Register FP
-                controls = 15'b0_001_01_1_00_0_00_0_0_1;
+            7'b0101011: begin  // CUSTOM-1: MINI FP STORE (SWMM) - S-type
+                controls = 15'b0_001_01_1_00_0_00_0_0_1; // MemWrite=1; WDMux=1
             end
 
             default: begin

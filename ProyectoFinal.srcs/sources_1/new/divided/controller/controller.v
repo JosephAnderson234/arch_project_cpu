@@ -25,9 +25,9 @@ module controller(
         // NUEVO: semejante al register file anterior pero ahora para FP
         output FPRegWriteM,
 
-
-        input  FPMiniRegWriteE, FPMiniRegWriteM, FPMiniRegWriteW,
-        input  WDMuxE, WDMuxM
+        output FPMiniRegWriteW,
+        output FPMiniRegWriteE,  // Para detectar LWMM
+        output  WDMuxM
     );
     //_____________________
     // fase de DEcode
@@ -47,6 +47,7 @@ module controller(
     wire [2:0] FPUControlD;
     wire FPMiniRegWriteD;
     wire WDMuxD;
+    wire WDMuxE;
 
     maindec md(
                 .op(op),
@@ -95,7 +96,9 @@ module controller(
 
     // ALUCOntrolE sale como output
     // ALUSrcE sale como output
-    assign ResultSrcE_bit0 = ResultSrcE[0];
+    // ResultSrcE_bit0 debe ser 0 para opcodes FP (1010011), LWMM (0001011), SWMM (0101011)
+    // Esto evita stalls innecesarios porque estas instrucciones no cargan a registros enteros
+    assign ResultSrcE_bit0 = ResultSrcE[0] & ~FPRegWriteD & ~FPMiniRegWriteD;
 
     reg_decode_to_execute_control reg_decode_to_execute_control_instance(
                                       .clk(clk),

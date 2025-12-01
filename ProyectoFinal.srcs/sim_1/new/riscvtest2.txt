@@ -2,58 +2,49 @@
 // RISCV TEST PROGRAM - Multiplicación de Vectores (2 elementos)
 // ============================================================================
 // Este programa carga 2 vectores de longitud 2 en registros FP mini,
-// los multiplica elemento a elemento y guarda el resultado en memoria.
+// los multiplica usando la operación customizada y guarda el resultado.
 // 
 // Vector A = [1.0, 2.0]
 // Vector B = [3.0, 4.0]
-// Resultado = (1.0 * 3.0) + (2.0 * 4.0) = 3.0 + 8.0 = 11.0
+// Operación: result = (A[0] * B[0]) + (A[1] * B[1])
+//          = (1.0 * 3.0) + (2.0 * 4.0) = 3.0 + 8.0 = 11.0
 // ============================================================================
 
 // ----------------------------------------------------------------------------
-// INICIALIZACIÓN: Dirección base de memoria
+// PASO 1: Inicializar dirección base de memoria
 // ----------------------------------------------------------------------------
 
 // addi x5, x0, 0         # x5 = 0 (dirección base para memoria)
 00000293
 
+00000293
+
 // ----------------------------------------------------------------------------
-// PASO 1: Preparar valores de punto flotante para Vector A
+// PASO 2: Preparar valores flotantes para Vector A
 // ----------------------------------------------------------------------------
 
 // Vector A[0] = 1.0 (IEEE-754: 0x3F800000)
 // lui x6, 0x3F800      # Cargar parte alta
 3F800337
 
-// addi x6, x6, 0x000   # x6 = 0x3F800000 (1.0)
-00030313
-
-// Vector A[1] = 2.0 (IEEE-754: 0x40000000)
+// Vector A[1] = 2.0 (IEEE-754: 0x40000000)  
 // lui x7, 0x40000      # Cargar parte alta
 400003B7
 
-// addi x7, x7, 0x000   # x7 = 0x40000000 (2.0)
-00038393
-
 // ----------------------------------------------------------------------------
-// PASO 2: Preparar valores de punto flotante para Vector B
+// PASO 3: Preparar valores flotantes para Vector B
 // ----------------------------------------------------------------------------
 
 // Vector B[0] = 3.0 (IEEE-754: 0x40400000)
 // lui x8, 0x40400      # Cargar parte alta
 40400437
 
-// addi x8, x8, 0x000   # x8 = 0x40400000 (3.0)
-00040413
-
 // Vector B[1] = 4.0 (IEEE-754: 0x40800000)
 // lui x9, 0x40800      # Cargar parte alta
 408004B7
 
-// addi x9, x9, 0x000   # x9 = 0x40800000 (4.0)
-00048493
-
 // ----------------------------------------------------------------------------
-// PASO 3: Guardar vectores en memoria
+// PASO 4: Guardar vectores en memoria
 // ----------------------------------------------------------------------------
 
 // sw x6, 0(x5)         # MEM[0] = A[0] = 1.0
@@ -69,100 +60,87 @@
 0092A623
 
 // ----------------------------------------------------------------------------
-// PASO 4: Cargar vectores en registros mini FP usando instrucción customizada
+// PASO 5: Cargar en registros mini FP usando instrucción LWMM (0x3F)
 // ----------------------------------------------------------------------------
-// Opcode 0x3F (0111111) = LWMM (Load Word Matrix Multiply)
-// Formato: [imm12][rs1][funct3=000][rd=2bits][opcode=0111111]
 
 // lw x10, 0(x5)        # x10 = MEM[0] = 1.0
 0002A503
 
+// lwmm rd=0, 0(x10)    # mini_reg[0] = A[0] = 1.0
+0005000B
+
 // lw x11, 4(x5)        # x11 = MEM[4] = 2.0
 0042A583
+
+// lwmm rd=1, 0(x11)    # mini_reg[1] = A[1] = 2.0
+0005880B
 
 // lw x12, 8(x5)        # x12 = MEM[8] = 3.0
 0082A603
 
+// lwmm rd=2, 0(x12)    # mini_reg[2] = B[0] = 3.0
+0006080B
+
 // lw x13, 12(x5)       # x13 = MEM[12] = 4.0
 00C2A683
 
-// lwmm rd=0, 0(x10)    # mini_reg[0] = 1.0 (A[0])
-// [000000000000][x10=01010][000][00][0111111]
-0005003F
-
-// lwmm rd=1, 0(x11)    # mini_reg[1] = 2.0 (A[1])
-// [000000000000][x11=01011][000][01][0111111]
-0005883F
-
-// lwmm rd=2, 0(x12)    # mini_reg[2] = 3.0 (B[0])
-// [000000000000][x12=01100][000][10][0111111]
-0006083F
-
-// lwmm rd=3, 0(x13)    # mini_reg[3] = 4.0 (B[1])
-// [000000000000][x13=01101][000][11][0111111]
-0006883F
+// lwmm rd=3, 0(x13)    # mini_reg[3] = B[1] = 4.0
+0006880B
 
 // ----------------------------------------------------------------------------
-// PASO 5: Ejecutar multiplicación vectorial
+// PASO 6: Ejecutar multiplicación vectorial automática
 // ----------------------------------------------------------------------------
-// El módulo mul2_vector_mul automáticamente calcula:
+// El módulo mul2_vector_mul calcula automáticamente:
 // result = (mini_reg[0] * mini_reg[2]) + (mini_reg[1] * mini_reg[3])
-// result = (1.0 * 3.0) + (2.0 * 4.0) = 3.0 + 8.0 = 11.0
+//        = (1.0 * 3.0) + (2.0 * 4.0) = 11.0
 
 // ----------------------------------------------------------------------------
-// PASO 6: Guardar resultado en memoria usando instrucción customizada
+// PASO 7: Guardar resultado usando instrucción SWMM (0x3E)
 // ----------------------------------------------------------------------------
-// Opcode 0x3E (0111110) = SWMM (Store Word Matrix Multiply)
-// Formato: [imm12][rs1][funct3=000][rd][opcode=0111110]
 
 // swmm x0, 16(x5)      # MEM[16] = resultado = 11.0
-// [000000010000][x5=00101][000][00000][0111110]
-0102803E
+0102802B
 
 // ----------------------------------------------------------------------------
-// VERIFICACIÓN: Cargar resultado para verificar
+// PASO 8: Verificar resultado
 // ----------------------------------------------------------------------------
 
-// lw x14, 16(x5)       # x14 = MEM[16] = resultado (debería ser 11.0)
+// lw x14, 16(x5)       # x14 = MEM[16] (debería ser 0x41300000 = 11.0)
 0102A703
 
 // ----------------------------------------------------------------------------
-// FINALIZACIÓN: Loop infinito
+// FINALIZACIÓN
 // ----------------------------------------------------------------------------
 
-// beq x0, x0, end      # Salta a sí mismo (loop infinito)
+// beq x0, x0, end      # Loop infinito
 00000063
 
 // nop
 00000013
 
 // ============================================================================
-// FIN DEL PROGRAMA
-// 
-// RESULTADO ESPERADO:
-// MEM[16] = 0x41300000 (11.0 en IEEE-754)
+// RESULTADO ESPERADO: MEM[16] = 0x41300000 (11.0 en IEEE-754)
 // ============================================================================
 
 
 00000293
 3F800337
-00030313
 400003B7
-00038393
 40400437
-00040413
 408004B7
-00048493
 0062A023
 0072A223
 0082A423
 0092A623
 0002A503
+0005000B
 0042A583
+0005880B
 0082A603
+0006080B
 00C2A683
-0005003F
-0005883F
-0006083F
-0006883F
-0102803E
+0006880B
+0102802B
+0102A703
+00000063
+00000013

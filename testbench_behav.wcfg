@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="138.401 ns"></ZoomEndTime>
-      <Cursor1Time time="60.600 ns"></Cursor1Time>
+      <ZoomEndTime time="140.345 ns"></ZoomEndTime>
+      <Cursor1Time time="166.440 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="146"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <NameColumnWidth column_width="171"></NameColumnWidth>
+      <ValueColumnWidth column_width="101"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="31" />
    <wvobject fp_name="/testbench/dut/dmem/RAM" type="array">
       <obj_property name="ElementShortName">RAM[63:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">RAM[63:0][31:0]</obj_property>
@@ -36,60 +36,113 @@
       <obj_property name="ElementShortName">InstrF[31:0]</obj_property>
       <obj_property name="ObjectShortName">InstrF[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/WriteDataM" type="array">
-      <obj_property name="ElementShortName">WriteDataM[31:0]</obj_property>
-      <obj_property name="ObjectShortName">WriteDataM[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/RegWriteW" type="logic">
-      <obj_property name="ElementShortName">RegWriteW</obj_property>
-      <obj_property name="ObjectShortName">RegWriteW</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/rf/rf" type="array">
+      <obj_property name="ElementShortName">rf[31:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">rf[31:0][31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/MemWriteD" type="logic">
-      <obj_property name="ElementShortName">MemWriteD</obj_property>
-      <obj_property name="ObjectShortName">MemWriteD</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/register_file" type="array">
+      <obj_property name="ElementShortName">register_file[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_file[0:3][31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/MemWriteE" type="logic">
-      <obj_property name="ElementShortName">MemWriteE</obj_property>
-      <obj_property name="ObjectShortName">MemWriteE</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/WriteDataM" type="array">
+      <obj_property name="ElementShortName">WriteDataM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteDataM[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/alu/a" type="array">
-      <obj_property name="ElementShortName">a[31:0]</obj_property>
-      <obj_property name="ObjectShortName">a[31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/RegWriteD" type="logic">
+      <obj_property name="ElementShortName">RegWriteD</obj_property>
+      <obj_property name="ObjectShortName">RegWriteD</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/alu/b" type="array">
-      <obj_property name="ElementShortName">b[31:0]</obj_property>
-      <obj_property name="ObjectShortName">b[31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/op" type="array">
+      <obj_property name="ElementShortName">op[6:0]</obj_property>
+      <obj_property name="ObjectShortName">op[6:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/SrcBmux/d0" type="array">
-      <obj_property name="ElementShortName">d0[31:0]</obj_property>
-      <obj_property name="ObjectShortName">d0[31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/hu/StallF" type="logic">
+      <obj_property name="ElementShortName">StallF</obj_property>
+      <obj_property name="ObjectShortName">StallF</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/SrcBmux/d1" type="array">
-      <obj_property name="ElementShortName">d1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">d1[31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/hu/StallD" type="logic">
+      <obj_property name="ElementShortName">StallD</obj_property>
+      <obj_property name="ObjectShortName">StallD</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/SrcBmux/d2" type="array">
-      <obj_property name="ElementShortName">d2[31:0]</obj_property>
-      <obj_property name="ObjectShortName">d2[31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/FPMiniRegWriteD" type="logic">
+      <obj_property name="ElementShortName">FPMiniRegWriteD</obj_property>
+      <obj_property name="ObjectShortName">FPMiniRegWriteD</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/SrcBmux/s" type="array">
-      <obj_property name="ElementShortName">s[1:0]</obj_property>
-      <obj_property name="ObjectShortName">s[1:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/hu/ResultSrcE_bit0" type="logic">
+      <obj_property name="ElementShortName">ResultSrcE_bit0</obj_property>
+      <obj_property name="ObjectShortName">ResultSrcE_bit0</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/MemWriteM" type="logic">
-      <obj_property name="ElementShortName">MemWriteM</obj_property>
-      <obj_property name="ObjectShortName">MemWriteM</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/ResultSrcE" type="array">
+      <obj_property name="ElementShortName">ResultSrcE[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ResultSrcE[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/FPRegWriteE" type="logic">
+      <obj_property name="ElementShortName">FPRegWriteE</obj_property>
+      <obj_property name="ObjectShortName">FPRegWriteE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/md/FPMiniRegWrite" type="logic">
+      <obj_property name="ElementShortName">FPMiniRegWrite</obj_property>
+      <obj_property name="ObjectShortName">FPMiniRegWrite</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/FPMiniRegWriteE" type="logic">
+      <obj_property name="ElementShortName">FPMiniRegWriteE</obj_property>
+      <obj_property name="ObjectShortName">FPMiniRegWriteE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/ResultSrcE_bit0" type="logic">
+      <obj_property name="ElementShortName">ResultSrcE_bit0</obj_property>
+      <obj_property name="ObjectShortName">ResultSrcE_bit0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/ALUResultE" type="array">
+      <obj_property name="ElementShortName">ALUResultE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ALUResultE[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/FPMiniRegWriteM" type="logic">
+      <obj_property name="ElementShortName">FPMiniRegWriteM</obj_property>
+      <obj_property name="ObjectShortName">FPMiniRegWriteM</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/dut/pipeline1/dp/ALUResultM" type="array">
       <obj_property name="ElementShortName">ALUResultM[31:0]</obj_property>
       <obj_property name="ObjectShortName">ALUResultM[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/alu/result_reg" type="array">
-      <obj_property name="ElementShortName">result_reg[31:0]</obj_property>
-      <obj_property name="ObjectShortName">result_reg[31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/ReadDataM" type="array">
+      <obj_property name="ElementShortName">ReadDataM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ReadDataM[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/FPMiniRegWriteW" type="logic">
+      <obj_property name="ElementShortName">FPMiniRegWriteW</obj_property>
+      <obj_property name="ObjectShortName">FPMiniRegWriteW</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/ResultW" type="array">
+      <obj_property name="ElementShortName">ResultW[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ResultW[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/ReadDataW" type="array">
+      <obj_property name="ElementShortName">ReadDataW[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ReadDataW[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/ResultSrcW" type="array">
+      <obj_property name="ElementShortName">ResultSrcW[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ResultSrcW[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/we5" type="logic">
+      <obj_property name="ElementShortName">we5</obj_property>
+      <obj_property name="ObjectShortName">we5</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/wd5" type="array">
+      <obj_property name="ElementShortName">wd5[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wd5[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/register_file" type="array">
+      <obj_property name="ElementShortName">register_file[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_file[0:3][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/a5" type="array">
+      <obj_property name="ElementShortName">a5[1:0]</obj_property>
+      <obj_property name="ObjectShortName">a5[1:0]</obj_property>
    </wvobject>
 </wave_config>
