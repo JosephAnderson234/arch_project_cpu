@@ -11,23 +11,18 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="44.060 ns"></ZoomStartTime>
-      <ZoomEndTime time="103.661 ns"></ZoomEndTime>
-      <Cursor1Time time="49.870 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="151.337 ns"></ZoomEndTime>
+      <Cursor1Time time="81.006 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="160"></NameColumnWidth>
+      <NameColumnWidth column_width="183"></NameColumnWidth>
       <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="9" />
    <wvobject fp_name="/testbench/dut/dmem/RAM" type="array">
       <obj_property name="ElementShortName">RAM[63:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">RAM[63:0][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/MemWrite" type="logic">
-      <obj_property name="ElementShortName">MemWrite</obj_property>
-      <obj_property name="ObjectShortName">MemWrite</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/WriteData" type="array">
       <obj_property name="ElementShortName">WriteData[31:0]</obj_property>
@@ -41,18 +36,6 @@
       <obj_property name="ElementShortName">InstrD[31:0]</obj_property>
       <obj_property name="ObjectShortName">InstrD[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/MemWriteD" type="logic">
-      <obj_property name="ElementShortName">MemWriteD</obj_property>
-      <obj_property name="ObjectShortName">MemWriteD</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/MemWriteE" type="logic">
-      <obj_property name="ElementShortName">MemWriteE</obj_property>
-      <obj_property name="ObjectShortName">MemWriteE</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/MemWriteM" type="logic">
-      <obj_property name="ElementShortName">MemWriteM</obj_property>
-      <obj_property name="ObjectShortName">MemWriteM</obj_property>
-   </wvobject>
    <wvobject fp_name="/testbench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -61,24 +44,16 @@
       <obj_property name="ElementShortName">ALUResultE[31:0]</obj_property>
       <obj_property name="ObjectShortName">ALUResultE[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/c/FPMiniRegWriteM" type="logic">
-      <obj_property name="ElementShortName">FPMiniRegWriteM</obj_property>
-      <obj_property name="ObjectShortName">FPMiniRegWriteM</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/ReadDataM" type="array">
-      <obj_property name="ElementShortName">ReadDataM[31:0]</obj_property>
-      <obj_property name="ObjectShortName">ReadDataM[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/ResultSrcW" type="array">
-      <obj_property name="ElementShortName">ResultSrcW[1:0]</obj_property>
-      <obj_property name="ObjectShortName">ResultSrcW[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/register_file" type="array">
-      <obj_property name="ElementShortName">register_file[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">register_file[0:3][31:0]</obj_property>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/wd5" type="array">
+      <obj_property name="ElementShortName">wd5[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wd5[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/dut/pipeline1/dp/rf/rf" type="array">
       <obj_property name="ElementShortName">rf[31:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">rf[31:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/register_file" type="array">
+      <obj_property name="ElementShortName">register_file[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_file[0:3][31:0]</obj_property>
    </wvobject>
 </wave_config>

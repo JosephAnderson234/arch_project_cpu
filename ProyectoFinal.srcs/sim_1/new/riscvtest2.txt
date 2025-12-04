@@ -1,20 +1,35 @@
-// ============================================================================
-// RISCV TEST PROGRAM - Cargar un vector en registros MINI FP
-// ============================================================================
-// Este programa inicializa memoria con dos elementos (1.0 y 2.0) y los carga
-// en los registros mini FP [0] y [1] usando la instrucción custom LWMM.
-// Útil para verificar stalls de LW/LWMM y forwarding FP.
-// ============================================================================
-
 // ----------------------------------------------------------------------------
-// PASO 1: Inicializar dirección base de memoria
+// TEST 2: Load-Use Hazard - Stall requerido (1 ciclo)
 // ----------------------------------------------------------------------------
 
-// addi x5, x0, 0         # x5 = 0 (dirección base para memoria)
+// addi x5, x0, 0       # x5 = 0 (dirección base)
 00000293
 
+// sw x1, 0(x5)         # MEM[0] = 5
+0012A023
+
+// lw x4, 0(x5)         # x4 = MEM[0] = 5
+0002A203
+
+// add x6, x4, x1       # x6 = x4 + x1 (STALL: lw->add usa x4)
+00420333
+
 // ----------------------------------------------------------------------------
-// PASO 2: Preparar valores flotantes para Vector A
+// TEST 3: Branch Hazard - Flush pipeline
+// ----------------------------------------------------------------------------
+
+// beq x1, x1, skip     # Branch tomado (flush siguiente instrucción)
+00108463
+
+// addi x7, x0, 99      # Esta instrucción se flusheará
+06300393
+
+// skip:
+// addi x7, x0, 10      # x7 = 10 (instrucción después del branch)
+00A00393
+
+// ----------------------------------------------------------------------------
+// TEST 4: Preparar valores flotantes para operaciones custom
 // ----------------------------------------------------------------------------
 
 // Vector A[0] = 1.0 (IEEE-754: 0x3F800000)
@@ -22,37 +37,69 @@
 3F800337
 
 // Vector A[1] = 2.0 (IEEE-754: 0x40000000)  
-// lui x7, 0x40000      # Cargar parte alta
-400003B7
+// lui x8, 0x40000      # Cargar parte alta
+40000437
 
 // ----------------------------------------------------------------------------
-// PASO 3: Guardar vector A en memoria
+// TEST 5: Guardar en memoria y probar Load-Use con LW normal
 // ----------------------------------------------------------------------------
 
-// sw x6, 0(x5)         # MEM[0] = A[0] = 1.0
-0062A023
+// sw x6, 4(x5)         # MEM[4] = 1.0
+0062A223
 
-// sw x7, 4(x5)         # MEM[4] = A[1] = 2.0
-0072A223
+// lw x10, 4(x5)        # x10 = MEM[4] = 1.0
+0042A503
 
-// ----------------------------------------------------------------------------
-// PASO 4: Cargar en registros mini FP usando LWMM (custom-0 opcode 0001011)
-// ----------------------------------------------------------------------------
-
-// lw x10, 0(x5)        # x10 = MEM[0] = 1.0
-0002A503
-
-// lwmm rd=0, 0(x10)    # mini_reg[0] = A[0] = 1.0
-0005000B
-
-// lw x11, 4(x5)        # x11 = MEM[4] = 2.0
-0042A583
-
-// lwmm rd=1, 0(x11)    # mini_reg[1] = A[1] = 2.0
-0005880B
+// add x11, x10, x1     # x11 = x10 + x1 (STALL: lw->add usa x10)
+00A085B3
 
 // ----------------------------------------------------------------------------
-// FIN: bucle infinito
+// TEST 6: Custom FP Load (LWMM) - Stall específico para mini-FP
+// ----------------------------------------------------------------------------
+
+// sw x8, 8(x5)         # MEM[8] = 2.0
+0082A423
+
+// lw x12, 8(x5)        # x12 = MEM[8] = 2.0
+0082A603
+
+// lwmm rd=0, 0(x12)    # mini_reg[0] = 2.0 (custom load)
+0006000B
+
+// lwmm rd=1, 0(x12)    # mini_reg[1] = 2.0 (SIN STALL: no consume mini-FP en D)
+0006080B
+
+// ----------------------------------------------------------------------------
+// TEST 7: Multiple forwarding paths
+// ----------------------------------------------------------------------------
+
+// addi x13, x0, 3      # x13 = 3
+00300693
+
+// add x14, x13, x13    # x14 = 6 (forwarding desde EX)
+00D68733
+
+// add x15, x14, x13    # x15 = 9 (forwarding desde MEM)
+00D707B3
+
+// add x16, x15, x14    # x16 = 15 (forwarding desde WB y MEM)
+00E78833
+
+// ----------------------------------------------------------------------------
+// TEST 8: No hazard - instrucciones independientes
+// ----------------------------------------------------------------------------
+
+// addi x17, x0, 7      # x17 = 7
+00700893
+
+// addi x18, x0, 8      # x18 = 8 (sin dependencia)
+00800913
+
+// add x19, x17, x18    # x19 = 15 (sin stall, datos listos)
+012889B3
+
+// ----------------------------------------------------------------------------
+// FIN: Loop infinito
 // ----------------------------------------------------------------------------
 
 // beq x0, x0, end      # Loop infinito

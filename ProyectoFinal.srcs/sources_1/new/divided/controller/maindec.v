@@ -46,7 +46,7 @@ module maindec(
             7'b0001011: begin  // CUSTOM-0: MINI FP LOAD (LWMM) - I-type
                 controls = 15'b0_000_01_0_01_0_00_0_1_0; // FPMiniRegWrite=1; RegWrite=0
             end
-            7'b0101011: begin  // CUSTOM-1: MINI FP STORE (SWMM) - S-type
+            7'b0101011: begin  // CUSTOM-1: MINI FP STORE (SWMM) - S-type //after multiply
                 controls = 15'b0_001_01_1_00_0_00_0_0_1; // MemWrite=1; WDMux=1
             end
 
