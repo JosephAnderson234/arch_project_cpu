@@ -25,12 +25,12 @@ module mul2_vector_mul( input [31:0] a_value, input [31:0] b_value, input[31:0] 
 
     mul_floating_points mul_inst1 (
         .a_value(a_value),
-        .b_value(b_value),
+        .b_value(c_value),
         .result_value(temp_result1)
     );
 
     mul_floating_points mul_inst2 (
-        .a_value(c_value),
+        .a_value(b_value),
         .b_value(d_value),
         .result_value(temp_result2)
     );

@@ -5,7 +5,85 @@ Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'PCPlus4M' [C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/datapath.v:326]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'PCPlus4M' [C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/datapath.v:349]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'PCPlus4M' [C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/datapath.v:343]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'PCPlus4M' [C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/datapath.v:366]
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/controller/controller.v" Line 1. Module controller doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/controller/maindec.v" Line 1. Module maindec doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/controller/aludec.v" Line 1. Module aludec doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_dec.v" Line 1. Module fpu_dec doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/datapath.v" Line 1. Module datapath doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/flopr.v" Line 1. Module flopr(WIDTH=32) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/adder.v" Line 1. Module adder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fp_regfile.v" Line 1. Module fp_regfile doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/extend.v" Line 1. Module extend doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/alu.v" Line 1. Module alu doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_top.v" Line 1. Module fpu_top doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_add_fp32_vivado.v" Line 1. Module fpu_add_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_mul_fp32_vivado.v" Line 1. Module fpu_mul_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_div_fp32_vivado.v" Line 1. Module fpu_div_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_minmax_fp32_vivado.v" Line 1. Module fpu_minmax_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/adder.v" Line 1. Module adder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/hazard/hazard_unit.v" Line 1. Module hazard_unit doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/imen.v" Line 1. Module imem doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/dmen.v" Line 1. Module dmem doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/controller/controller.v" Line 1. Module controller doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/controller/maindec.v" Line 1. Module maindec doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/controller/aludec.v" Line 1. Module aludec doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_dec.v" Line 1. Module fpu_dec doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/datapath.v" Line 1. Module datapath doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/flopr.v" Line 1. Module flopr(WIDTH=32) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/adder.v" Line 1. Module adder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fp_regfile.v" Line 1. Module fp_regfile doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/extend.v" Line 1. Module extend doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/alu.v" Line 1. Module alu doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_top.v" Line 1. Module fpu_top doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_add_fp32_vivado.v" Line 1. Module fpu_add_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_mul_fp32_vivado.v" Line 1. Module fpu_mul_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_div_fp32_vivado.v" Line 1. Module fpu_div_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/fp_modules/fpu_minmax_fp32_vivado.v" Line 1. Module fpu_minmax_fp32_vivado doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/adder.v" Line 1. Module adder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/hazard/hazard_unit.v" Line 1. Module hazard_unit doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/imen.v" Line 1. Module imem doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/dmen.v" Line 1. Module dmem doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.maindec
+Compiling module xil_defaultlib.aludec
+Compiling module xil_defaultlib.fpu_dec
+Compiling module xil_defaultlib.reg_decode_to_execute_control
+Compiling module xil_defaultlib.reg_execute_to_memory_control
+Compiling module xil_defaultlib.reg_memory_to_writeback_control
+Compiling module xil_defaultlib.controller
+Compiling module xil_defaultlib.flopr(WIDTH=32)
+Compiling module xil_defaultlib.adder
+Compiling module xil_defaultlib.reg_fetch_to_decode
+Compiling module xil_defaultlib.regfile
+Compiling module xil_defaultlib.fp_regfile
+Compiling module xil_defaultlib.reg_floating
+Compiling module xil_defaultlib.reg_decode_to_execute_fp
+Compiling module xil_defaultlib.mul_floating_points
+Compiling module xil_defaultlib.sum_floating_points
+Compiling module xil_defaultlib.mul2_vector_mul
+Compiling module xil_defaultlib.extend
+Compiling module xil_defaultlib.reg_decode_to_execute
+Compiling module xil_defaultlib.mux3(WIDTH=32)
+Compiling module xil_defaultlib.mux2(WIDTH=32)
+Compiling module xil_defaultlib.alu
+Compiling module xil_defaultlib.fpu_add_fp32_vivado
+Compiling module xil_defaultlib.fpu_mul_fp32_vivado
+Compiling module xil_defaultlib.fpu_div_fp32_vivado
+Compiling module xil_defaultlib.fpu_minmax_fp32_vivado
+Compiling module xil_defaultlib.fpu_top
+Compiling module xil_defaultlib.reg_execute_to_memory
+Compiling module xil_defaultlib.reg_memory_to_writeback
+Compiling module xil_defaultlib.datapath
+Compiling module xil_defaultlib.hazard_unit
+Compiling module xil_defaultlib.pipeline
+Compiling module xil_defaultlib.imem
+Compiling module xil_defaultlib.dmem
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot testbench_behav

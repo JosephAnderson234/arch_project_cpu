@@ -1,64 +1,120 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 21.11.2025 16:54:20
-// Design Name: 
-// Module Name: mul_floating_points
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module mul_floating_points(
-    input[31:0] a_value, input[31:0] b_value, output[31:0] result_value
-    );
+    input  [31:0] a_value,
+    input  [31:0] b_value,
+    output [31:0] result_value
+);
 
-    //i should multiplyl 2 numbers that is given in IEEE 754 floating point format
+//======================================================
+// 1. Separación de campos IEEE754
+//======================================================
+wire        a_sign      = a_value[31];
+wire        b_sign      = b_value[31];
+wire [7:0]  a_exp       = a_value[30:23];
+wire [7:0]  b_exp       = b_value[30:23];
+wire [22:0] a_mant      = a_value[22:0];
+wire [22:0] b_mant      = b_value[22:0];
 
-    wire a_sign;
-    wire b_sign;
-    wire res_sign;
-    
-    wire[7:0] a_exponent;
-    wire[7:0] b_exponent;
-    wire[7:0] res_exponent;
-    wire[22:0] a_mantissa;
-    wire[22:0] b_mantissa;
-    wire[47:0] res_mantissa;
-    wire[23:0] a_mantissa_with_hidden_bit;
-    wire[23:0] b_mantissa_with_hidden_bit;
-    wire[47:0] mantissa_product;
-    wire[7:0] exponent_sum;
-    wire normalize;
-    wire[22:0] final_mantissa;
-    wire[7:0] final_exponent;
-    wire overflow;
-    assign a_sign = a_value[31];
-    assign b_sign = b_value[31];
-    assign a_exponent = a_value[30:23];
-    assign b_exponent = b_value[30:23];
-    assign a_mantissa = a_value[22:0];
-    assign b_mantissa = b_value[22:0];
-    assign a_mantissa_with_hidden_bit = {1'b1, a_mantissa};
-    assign b_mantissa_with_hidden_bit = {1'b1, b_mantissa};
-    assign mantissa_product = a_mantissa_with_hidden_bit * b_mantissa_with_hidden_bit;
-    assign exponent_sum = a_exponent + b_exponent - 8'd127;
-    assign normalize = mantissa_product[47];
-    assign res_sign = a_sign ^ b_sign;
-    assign res_exponent = normalize ? (exponent_sum + 8'd1) : exponent_sum;
-    assign final_mantissa = normalize ? mantissa_product[46:24] : mantissa_product[45:23];
-    assign overflow = (res_exponent >= 8'd255);
-    assign final_exponent = overflow ? 8'd255 : res_exponent;
-    assign result_value = {res_sign, final_exponent, final_mantissa};
+//======================================================
+// 2. Detección de casos especiales IEEE754
+//======================================================
+wire a_is_zero = (a_exp == 8'd0) && (a_mant == 23'd0);
+wire b_is_zero = (b_exp == 8'd0) && (b_mant == 23'd0);
+
+wire a_is_inf  = (a_exp == 8'hFF) && (a_mant != 0);
+wire b_is_inf  = (b_exp == 8'hFF) && (b_mant != 0);
+
+wire a_is_nan  = (a_exp == 8'hFF) && (a_mant != 0);
+wire b_is_nan  = (b_exp == 8'hFF) && (b_mant != 0);
+
+//======================================================
+// 3. Signo del resultado
+//======================================================
+wire res_sign = a_sign ^ b_sign;
+
+//======================================================
+// 4. Manejo de NaNs o infinitos
+//======================================================
+wire [31:0] nan_value = {1'b0, 8'hFF, 23'h400000}; // Quiet NaN estándar
+
+reg [31:0] special_case;
+always @(*) begin
+    if (a_is_nan || b_is_nan)
+        special_case = nan_value;
+
+    else if (a_is_inf && b_is_zero)
+        special_case = nan_value; // inf * 0 = NaN
+
+    else if (a_is_zero && b_is_inf)
+        special_case = nan_value;
+
+    else if (a_is_inf || b_is_inf)
+        special_case = {res_sign, 8'hFF, 23'd0};  // ±inf
+
+    else if (a_is_zero || b_is_zero)
+        special_case = {res_sign, 8'd0, 23'd0};  // ±0
+
+    else
+        special_case = 32'hFFFFFFFF;  // significa: NO caso especial
+end
+
+//======================================================
+// 5. Si es caso especial, devolvemos directamente
+//======================================================
+wire special = (special_case != 32'hFFFFFFFF);
+
+//======================================================
+// 6. Preparar mantisas con bit oculto
+//======================================================
+wire [23:0] mant_a = (a_exp == 0) ? {1'b0, a_mant} : {1'b1, a_mant};
+wire [23:0] mant_b = (b_exp == 0) ? {1'b0, b_mant} : {1'b1, b_mant};
+
+//======================================================
+// 7. Multiplicación de mantisas (48 bits)
+//======================================================
+wire [47:0] mant_prod = mant_a * mant_b;
+
+//======================================================
+// 8. Suma de exponentes
+//======================================================
+// Para subnormales, el exponente real es 1 - bias (= -126)
+wire signed [9:0] a_exp_real = (a_exp == 0) ? -126 : (a_exp - 127);
+wire signed [9:0] b_exp_real = (b_exp == 0) ? -126 : (b_exp - 127);
+
+wire signed [9:0] exp_sum = a_exp_real + b_exp_real;
+
+//======================================================
+// 9. Normalización (si el producto tiene 1 en la posición 47)
+//======================================================
+wire leading = mant_prod[47];
+
+wire [22:0] final_mantissa =
+        leading ? mant_prod[46:24] : mant_prod[45:23];
+
+wire signed [9:0] final_exp =
+        leading ? (exp_sum + 1) : exp_sum;
+
+//======================================================
+// 10. Reajuste del exponente a rango IEEE754
+//======================================================
+wire overflow  = (final_exp > 127);
+wire underflow = (final_exp < -126);
+
+wire [7:0] final_exp_field =
+        overflow  ? 8'hFF :
+        underflow ? 8'h00 :
+                    (final_exp + 127);
+
+//======================================================
+// 11. Resultado ensamblado
+//======================================================
+wire [31:0] normal_result =
+    {res_sign, final_exp_field, final_mantissa};
+
+//======================================================
+// 12. Seleccionar entre caso especial o normal
+//======================================================
+assign result_value = special ? special_case : normal_result;
+
 endmodule

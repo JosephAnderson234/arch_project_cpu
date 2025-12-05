@@ -12,17 +12,18 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="151.337 ns"></ZoomEndTime>
-      <Cursor1Time time="81.006 ns"></Cursor1Time>
+      <ZoomEndTime time="300.001 ns"></ZoomEndTime>
+      <Cursor1Time time="249.721 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="183"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <NameColumnWidth column_width="303"></NameColumnWidth>
+      <ValueColumnWidth column_width="171"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="8" />
    <wvobject fp_name="/testbench/dut/dmem/RAM" type="array">
       <obj_property name="ElementShortName">RAM[63:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">RAM[63:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/WriteData" type="array">
       <obj_property name="ElementShortName">WriteData[31:0]</obj_property>
@@ -40,17 +41,14 @@
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/ALUResultE" type="array">
-      <obj_property name="ElementShortName">ALUResultE[31:0]</obj_property>
-      <obj_property name="ObjectShortName">ALUResultE[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/wd5" type="array">
-      <obj_property name="ElementShortName">wd5[31:0]</obj_property>
-      <obj_property name="ObjectShortName">wd5[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/testbench/dut/pipeline1/dp/rf/rf" type="array">
       <obj_property name="ElementShortName">rf[31:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">rf[31:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/c/op" type="array">
+      <obj_property name="ElementShortName">op[6:0]</obj_property>
+      <obj_property name="ObjectShortName">op[6:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/register_file" type="array">
       <obj_property name="ElementShortName">register_file[0:3][31:0]</obj_property>

@@ -120,7 +120,7 @@ module datapath(input  clk, reset,
 	//rs is the value in the offcial regsiter that means 
 	//and the offset will be target as tha classic lw format
 	//so in this case the format will be
-	//opcode: 7 bits -> 0111111
+	//opcode: 7 bits -> 0001011
 	// rd: 2 bits
 	//rs: 5bits
 	//funct3: 3 bits -> 000
@@ -128,12 +128,29 @@ module datapath(input  clk, reset,
 	//the 3 bits that we are not using, it will be as a don't care
 
 	//soo the final format, as an example can be:
-	// [12 bits of offset][XX00][000][00110]0111111
+	// [12 bits of offset][XX00][000][00110]0001011
+    //00000000100000000000000011001011 
+    //008000CB
+    //8->1000
+
+    //000000001000_00000_000_00010_0001011 //mini reg 3 00 01 10
+    //0000_0000_1000_0000_0000_0001_0000_1011
+    //0080010B
+    //008
+    
+    //000000001100_00000_000_00011_0001011
+    //0000_0000_1100_0000_0000_0001_1000_1011
+    //00C0018B
 	//----------------------rs with dont care bits -- 
 
+    //Now the op: 0101011
+    /// MINI FP STORE (SWMM) - S-type //after multiply
+    //[7bits imn][5bits rs2][5bts rs1][3bits funct3][5bits imm][7bits opcode]
+    //0000000-00000-10100-000-00000-0101011
+    //0000_0000_0000_1010_0000_0000_0010_1011
+    //000A002B
 
 	//my custom op format, called JTOperation, soooo here is the instructure
-	//
 	//[]
 
 
