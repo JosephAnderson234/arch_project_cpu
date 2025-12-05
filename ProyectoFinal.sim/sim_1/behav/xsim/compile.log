@@ -64,9 +64,6 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/cosea/Documents/vivado/Pip
 INFO: [VRFC 10-311] analyzing module reg_memory_to_writeback_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/divided/datapath/regfile.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module regfile
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/sum_floating_points.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module fp_add
-WARNING: [VRFC 10-8497] literal value 'h800000 truncated to fit in 23 bits [C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/sum_floating_points.v:201]
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sources_1/new/top.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module top
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/cosea/Documents/vivado/Pipelined/ProyectoFinal/ProyectoFinal.srcs/sim_1/imports/new/testbench.v" into library xil_defaultlib

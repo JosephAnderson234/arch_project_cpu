@@ -12,18 +12,17 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="300.001 ns"></ZoomEndTime>
-      <Cursor1Time time="249.721 ns"></Cursor1Time>
+      <ZoomEndTime time="400.001 ns"></ZoomEndTime>
+      <Cursor1Time time="400.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="303"></NameColumnWidth>
-      <ValueColumnWidth column_width="171"></ValueColumnWidth>
+      <ValueColumnWidth column_width="151"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="11" />
    <wvobject fp_name="/testbench/dut/dmem/RAM" type="array">
       <obj_property name="ElementShortName">RAM[63:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">RAM[63:0][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/WriteData" type="array">
       <obj_property name="ElementShortName">WriteData[31:0]</obj_property>
@@ -44,7 +43,6 @@
    <wvobject fp_name="/testbench/dut/pipeline1/dp/rf/rf" type="array">
       <obj_property name="ElementShortName">rf[31:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">rf[31:0][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/testbench/dut/pipeline1/c/op" type="array">
       <obj_property name="ElementShortName">op[6:0]</obj_property>
@@ -53,5 +51,17 @@
    <wvobject fp_name="/testbench/dut/pipeline1/dp/regFloatingInstance/register_file" type="array">
       <obj_property name="ElementShortName">register_file[0:3][31:0]</obj_property>
       <obj_property name="ObjectShortName">register_file[0:3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/mulVectorsInstance/result_value" type="array">
+      <obj_property name="ElementShortName">result_value[31:0]</obj_property>
+      <obj_property name="ObjectShortName">result_value[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/WriteDataM_base" type="array">
+      <obj_property name="ElementShortName">WriteDataM_base[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteDataM_base[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/pipeline1/dp/WriteDataM" type="array">
+      <obj_property name="ElementShortName">WriteDataM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WriteDataM[31:0]</obj_property>
    </wvobject>
 </wave_config>

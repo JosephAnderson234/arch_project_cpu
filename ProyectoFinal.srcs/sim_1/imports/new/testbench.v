@@ -28,7 +28,7 @@ module testbench;
 
   // check results
   initial begin
-    #300;
+    #600;
     $finish;
   end
 endmodule

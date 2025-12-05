@@ -1,122 +1,66 @@
-// ----------------------------------------------------------------------------
-// TEST 2: Load-Use Hazard - Stall requerido (1 ciclo)
-// ----------------------------------------------------------------------------
+08000a13 // addi x20, x0, 128
 
-// addi x5, x0, 0       # x5 = 0 (dirección base)
-00000293
+3f800137 // lui x2, 3f80 --> a
+400001B7 //lui x3, 4000 -->b
+3f800237 // lui x4, 3f80 -->x
+400002b7 // lui x5, 4000-->y
 
-// sw x1, 0(x5)         # MEM[0] = 5
-0012A023
+//guardado en memoria de a,b
+00202023 // sw x1, 0(x0)
+00302223 // sw x2, 4(x0)
 
-// lw x4, 0(x5)         # x4 = MEM[0] = 5
-0002A203
+//guardado en memoria de x,y
+00402423 // sw x3, 8(x0)
+00502623 // sw x4, 12(x0)
 
-// add x6, x4, x1       # x6 = x4 + x1 (STALL: lw->add usa x4)
-00420333
+//subimos en el miniregister
+0000000B // lwmn 00, 0(x0)
+0040008B // lwmn 01, 4(x0)
+0080010B // lwmn 10, 8(x0)
+00C0018B // lwmn 11, 12(x0)
 
-// ----------------------------------------------------------------------------
-// TEST 3: Branch Hazard - Flush pipeline
-// ----------------------------------------------------------------------------
+//cargamos c, d ->1.5 0.5 tmb a z, w (registros x6, x7, x8, x9)
+3fc00337
+3f0003b7
+3fc00437
+3f0004b7
+//guardado en memoria
+//multiplicamos
+000A002B //swmn 0(x20)
+//hasta aqui tenemos [A, B] * [X, Y]
+//ahora haremos el guardado y cargado de [XY]
+00802c23
+00902e23
+0180010B
+01C0018B
 
-// beq x1, x1, skip     # Branch tomado (flush siguiente instrucción)
-00108463
-
-// addi x7, x0, 99      # Esta instrucción se flusheará
-06300393
-
-// skip:
-// addi x7, x0, 10      # x7 = 10 (instrucción después del branch)
-00A00393
-
-// ----------------------------------------------------------------------------
-// TEST 4: Preparar valores flotantes para operaciones custom
-// ----------------------------------------------------------------------------
-
-// Vector A[0] = 1.0 (IEEE-754: 0x3F800000)
-// lui x6, 0x3F800      # Cargar parte alta
-3F800337
-
-// Vector A[1] = 2.0 (IEEE-754: 0x40000000)  
-// lui x8, 0x40000      # Cargar parte alta
-40000437
-
-// ----------------------------------------------------------------------------
-// TEST 5: Guardar en memoria y probar Load-Use con LW normal
-// ----------------------------------------------------------------------------
-
-// sw x6, 4(x5)         # MEM[4] = 1.0
-0062A223
-
-// lw x10, 4(x5)        # x10 = MEM[4] = 1.0
-0042A503
-
-// add x11, x10, x1     # x11 = x10 + x1 (STALL: lw->add usa x10)
-00A085B3
-
-// ----------------------------------------------------------------------------
-// TEST 6: Custom FP Load (LWMM) - Stall específico para mini-FP
-// ----------------------------------------------------------------------------
-
-// sw x8, 8(x5)         # MEM[8] = 2.0
-0082A423
-
-// lw x12, 8(x5)        # x12 = MEM[8] = 2.0
-0082A603
-
-// lwmm rd=0, 0(x12)    # mini_reg[0] = 2.0 (custom load)
-0006000B
-
-// lwmm rd=1, 0(x12)    # mini_reg[1] = 2.0 (SIN STALL: no consume mini-FP en D)
-0006080B
-
-// ----------------------------------------------------------------------------
-// TEST 7: Multiple forwarding paths
-// ----------------------------------------------------------------------------
-
-// addi x13, x0, 3      # x13 = 3
-00300693
-
-// add x14, x13, x13    # x14 = 6 (forwarding desde EX)
-00D68733
-
-// add x15, x14, x13    # x15 = 9 (forwarding desde MEM)
-00D707B3
-
-// add x16, x15, x14    # x16 = 15 (forwarding desde WB y MEM)
-00E78833
-
-// ----------------------------------------------------------------------------
-// TEST 8: No hazard - instrucciones independientes
-// ----------------------------------------------------------------------------
-
-// addi x17, x0, 7      # x17 = 7
-00700893
-
-// addi x18, x0, 8      # x18 = 8 (sin dependencia)
-00800913
-
-// add x19, x17, x18    # x19 = 15 (sin stall, datos listos)
-012889B3
-
-// ----------------------------------------------------------------------------
-// FIN: Loop infinito
-// ----------------------------------------------------------------------------
-
-// beq x0, x0, end      # Loop infinito
-00000063
-
-// nop
-00000013
+//haremos el guardado en memoria de [C, D] y luego la multiplicación
+00602823
+00702a23
+00000033
+000A022B //swmn 4(x20)
 
 
-3f800137
-00202023
-0000000B
-3f8001b7
-00302223
-0040008B
-3f800237
-00402423
-008000CB
-3f8002b7
-00502623
+
+//ahora debemos
+//hacemos el cargador de [C, D] en el mini register y el valor inicial de [X, Y]
+0100000B
+0140008B
+0080010B
+00C0018B
+
+//NOP's
+00000033
+00000033
+00000033
+000A042B //swmn 8(x20)
+
+
+//ahora el cargador de [Z, W]
+0180010B
+01C0018B
+
+00000033
+00000033
+00000033
+000A062B
